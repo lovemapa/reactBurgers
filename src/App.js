@@ -9,25 +9,28 @@ class App extends Component {
 
   state = {
     persons: [
-      { name: "Cat", type: "mamal" },
-      { name: "Snake", type: "reptile" },
-      { name: "Human", type: "Sapiens" }
+      { id: 'dfdssdf', name: "Cat", type: "mamal" },
+      { id: 'kljklj', name: "Snake", type: "reptile" },
+      { id: 'opooo', name: "Human", type: "Sapiens" }
     ],
     showAnimals: true,
     count: 0
   }
 
-  changeState = () => {
-    const s = this.state.showAnimals
-    this.setState({
+  changeState = (event, id) => {
 
-      pesons: [
-        { name: "Dog", type: "mamal" },
-        { name: "Lizar", type: "reptile" }
-      ],
-      count: this.state.count + 1,
-      showAnimals: !s
+    const personIndex = this.state.persons.findIndex(person => {
+      return person.id === id
     })
+
+    const person = { ...this.state.persons[personIndex] };
+
+
+    person.name = event.target.value
+    const persons = [...this.state.persons]
+    persons[personIndex] = person
+    this.setState({ persons: persons })
+
   }
 
   deletePerson = (personIndex) => {
@@ -47,7 +50,10 @@ class App extends Component {
         return <Animals
           click={() => this.deletePerson(index)}
           name={persons.name}
-          value={persons.type} />
+          value={persons.type}
+          key={persons.id}
+          stateChange={(event) => this.changeState(event, persons.id)} />
+
       })}
 
 
