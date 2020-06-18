@@ -7,8 +7,9 @@ export default function Animals(props) {
 
     return (
         <div className="Animals">
-            <h1>{props.name} has type {props.type} has now count {props.value}</h1>
-            <input type='text' onChange={props.changeEvent} />
+            <h1 onClick={props.click}>  {props.name} has type {props.value} has now count {props.count} </h1>
+
         </div>
     )
 }
+
