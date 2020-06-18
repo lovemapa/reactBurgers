@@ -1,25 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
+import Animals from './Animals/Animals'
 import './App.css';
 
 function App() {
+
+  const [animalState, setAnimals] = useState({
+    animals: [{
+      name: "Cat", type: "Mammal"
+    },
+    {
+      name: "Dog", type: "Mammal"
+    }],
+    count: 0
+  })
+
+  const setState = () => {
+    setAnimals({
+      animals: [{
+        name: "Whale", type: "Mammal"
+      },
+      {
+        name: "Human", type: "Mammal"
+      }],
+      count: animalState.count + 1
+
+    })
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={setState}>Set state</button>
+      <Animals name={animalState.animals[0].name} type={animalState.animals[0].type} value={animalState.count} />
+      <Animals name={animalState.animals[1].name} type={animalState.animals[1].type} />
+
     </div>
+
+
   );
 }
 
