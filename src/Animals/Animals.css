@@ -3,3 +3,13 @@
   background-color: lightblue;
   text-align: center;
 }
+
+
+.ViewRed{
+  background-color: rgb(221, 193, 32);
+}
+
+.ViewGreen{
+ font-weight: bold;
+  color: rgb(27, 5, 151);;
+}

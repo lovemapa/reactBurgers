@@ -71,6 +71,13 @@ class App extends Component {
 
     };
 
+    var classes = []
+    if (this.state.persons.length <= 1)
+      classes.push('ViewRed')
+    if (this.state.persons.length <= 2)
+      classes.push('ViewGreen')
+
+
     if (this.state.showAnimals) {
       person = (<div>
         {
@@ -90,7 +97,9 @@ class App extends Component {
       style.backgroundColor = 'black'
       style.fontWeight = 'bold';
 
+
     }
+
 
     return (
       <div>
@@ -98,8 +107,9 @@ class App extends Component {
         {person}
 
         <br></br>
+        <p className={classes.join(' ')}>This is going to be changed</p>
+        <button className={classes.join(' ')} onClick={this.changeName} style={style}>Toggle state</button>
 
-        <button onClick={this.changeName} style={style}>Toggle state</button>
       </div >)
   }
 }
