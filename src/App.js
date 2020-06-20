@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Radium from 'radium'
 import Animals from './Animals/Animals'
 import './App.css';
 
@@ -68,6 +68,11 @@ class App extends Component {
 
       textDecoration: 'none',
       display: `block`,
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black',
+        cursor: 'crosshair'
+      }
 
     };
 
@@ -96,7 +101,11 @@ class App extends Component {
       </div>)
       style.backgroundColor = 'black'
       style.fontWeight = 'bold';
-
+      style[':hover'] = {
+        backgroundColor: 'blue',
+        color: 'white',
+        cursor: 'default'
+      }
 
     }
 
@@ -114,4 +123,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
