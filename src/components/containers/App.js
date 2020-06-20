@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Radium from 'radium'
-import Animals from './Animals/Animals'
+import Animals from '../Animals/Animals'
 import './App.css';
+import Cockpit from '../Cockpit/Cockpit';
 
 class App extends Component {
 
@@ -25,7 +26,8 @@ class App extends Component {
         { id: 'kljklj', name: "Lizard", type: "reptile" },
         { id: 'opooo', name: "Chimpanze", type: "Alike Sapiens" }
       ],
-      showAnimals: !this.state.showAnimals
+      showAnimals: !this.state.showAnimals,
+      count: this.state.count + 1
     })
   }
   changeState = (event, id) => {
@@ -57,68 +59,25 @@ class App extends Component {
   render() {
 
     let person = null
-    const style = {
-      backgroundColor: 'red',
-
-      margin: '0 auto',
-      textAlign: 'center',
-      border: 'none',
-      color: 'white',
-      padding: '15px 32px',
-
-      textDecoration: 'none',
-      display: `block`,
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black',
-        cursor: 'crosshair'
-      }
-
-    };
-
-    var classes = []
-    if (this.state.persons.length <= 1)
-      classes.push('ViewRed')
-    if (this.state.persons.length <= 2)
-      classes.push('ViewGreen')
-
 
     if (this.state.showAnimals) {
       person = (<div>
-        {
-          this.state.persons.map((persons, index) => {
-            return <Animals
-              click={() => this.deletePerson(index)}
-              name={persons.name}
-              value={persons.type}
-              key={persons.id}
-              stateChange={(event) => this.changeState(event, persons.id)}
-            />
-          })
-
-        }
-
+        <Animals
+          persons={this.state.persons}
+          delete={this.deletePerson}
+          change={this.changeState}
+          count={this.state.count}
+        />
       </div>)
-      style.backgroundColor = 'black'
-      style.fontWeight = 'bold';
-      style[':hover'] = {
-        backgroundColor: 'blue',
-        color: 'white',
-        cursor: 'default'
-      }
-
     }
-
-
     return (
       <div>
 
         {person}
 
         <br></br>
-        <p className={classes.join(' ')}>This is going to be changed</p>
-        <button className={classes.join(' ')} onClick={this.changeName} style={style}>Toggle state</button>
-
+        <Cockpit persons={this.state.persons}
+          changeName={this.changeName} />
       </div >)
   }
 }

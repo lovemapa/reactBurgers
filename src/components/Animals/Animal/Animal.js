@@ -1,12 +1,12 @@
 import React from 'react'
-import './Animals.css'
+import './Animal.css'
 
 
-export default function Animals(props) {
+export default function Animal(props) {
 
 
     return (
-        <div className="Animals">
+        <div className="Animal">
             <h1 onClick={props.click}>  {props.name} has type {props.value} has now count {props.count} </h1>
             <input onChange={props.stateChange} value={props.name} />
         </div>
