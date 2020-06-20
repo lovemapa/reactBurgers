@@ -17,6 +17,17 @@ class App extends Component {
     count: 0
   }
 
+
+  changeName = () => {
+    this.setState({
+      persons: [
+        { id: 'dfdssdf', name: "Dog", type: "mamal" },
+        { id: 'kljklj', name: "Lizard", type: "reptile" },
+        { id: 'opooo', name: "Chimpanze", type: "Alike Sapiens" }
+      ],
+      showAnimals: !this.state.showAnimals
+    })
+  }
   changeState = (event, id) => {
 
     const personIndex = this.state.persons.findIndex(person => {
@@ -45,21 +56,51 @@ class App extends Component {
 
   render() {
 
-    return (<div>
-      {this.state.persons.map((persons, index) => {
-        return <Animals
-          click={() => this.deletePerson(index)}
-          name={persons.name}
-          value={persons.type}
-          key={persons.id}
-          stateChange={(event) => this.changeState(event, persons.id)} />
+    let person = null
+    const style = {
+      backgroundColor: 'red',
 
-      })}
+      margin: '0 auto',
+      textAlign: 'center',
+      border: 'none',
+      color: 'white',
+      padding: '15px 32px',
 
+      textDecoration: 'none',
+      display: `block`,
 
+    };
 
+    if (this.state.showAnimals) {
+      person = (<div>
+        {
+          this.state.persons.map((persons, index) => {
+            return <Animals
+              click={() => this.deletePerson(index)}
+              name={persons.name}
+              value={persons.type}
+              key={persons.id}
+              stateChange={(event) => this.changeState(event, persons.id)}
+            />
+          })
 
-    </div >)
+        }
+
+      </div>)
+      style.backgroundColor = 'black'
+      style.fontWeight = 'bold';
+
+    }
+
+    return (
+      <div>
+
+        {person}
+
+        <br></br>
+
+        <button onClick={this.changeName} style={style}>Toggle state</button>
+      </div >)
   }
 }
 
