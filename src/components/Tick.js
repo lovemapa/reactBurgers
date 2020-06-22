@@ -1,0 +1,30 @@
+
+import React, { Component } from 'react'
+
+export default class Clock extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { currentCount: 10 }
+    }
+    timer() {
+        this.setState({
+            currentCount: this.state.currentCount - 1
+        })
+        if (this.state.currentCount < 1) {
+            clearInterval(this.intervalId);
+        }
+    }
+    componentDidMount() {
+        this.intervalId = setInterval(this.timer.bind(this), 1000);
+    }
+    componentWillUnmount() {
+        clearInterval(this.intervalId);
+    }
+    render() {
+        return (
+            <div>
+                <h2>It is {new Date().toLocaleTimeString()}.</h2>
+            </div>
+        );
+    }
+}

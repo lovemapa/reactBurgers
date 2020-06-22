@@ -3,6 +3,9 @@ import Radium from 'radium'
 import Animals from '../Animals/Animals'
 import './App.css';
 import Cockpit from '../Cockpit/Cockpit';
+import Tick from '../Tick'
+
+
 
 class App extends Component {
 
@@ -15,6 +18,7 @@ class App extends Component {
       { id: 'opooo', name: "Human", type: "Sapiens" }
     ],
     showAnimals: true,
+    showTimer: true,
     count: 0
   }
 
@@ -54,11 +58,15 @@ class App extends Component {
   }
 
 
+  toggleTimer = () => {
 
+    this.setState({ showTimer: !this.state.showTimer })
+  }
 
   render() {
 
     let person = null
+    let timer = null
 
     if (this.state.showAnimals) {
       person = (<div>
@@ -69,15 +77,29 @@ class App extends Component {
           count={this.state.count}
         />
       </div>)
+
+
     }
+    if (this.state.showTimer) {
+
+      timer = (<div>
+        <Tick />
+      </div>)
+    }
+
+
     return (
       <div>
 
         {person}
 
         <br></br>
+
         <Cockpit persons={this.state.persons}
           changeName={this.changeName} />
+
+        {timer}
+        <button onClick={this.toggleTimer}>Toggle Timer</button>
       </div >)
   }
 }
