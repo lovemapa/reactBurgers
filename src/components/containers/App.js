@@ -24,14 +24,17 @@ class App extends Component {
 
 
   changeName = () => {
-    this.setState({
-      persons: [
-        { id: 'dfdssdf', name: "Dog", type: "mamal" },
-        { id: 'kljklj', name: "Lizard", type: "reptile" },
-        { id: 'opooo', name: "Chimpanze", type: "Alike Sapiens" }
-      ],
-      showAnimals: !this.state.showAnimals,
-      count: this.state.count + 1
+    this.setState((prevState, count) => {
+      return {
+        persons: [
+          { id: 'dfdssdf', name: "Dog", type: "mamal" },
+          { id: 'kljklj', name: "Lizard", type: "reptile" },
+          { id: 'opooo', name: "Chimpanze", type: "Alike Sapiens" }
+        ],
+        showAnimals: !this.state.showAnimals,
+        count: prevState.count + 1
+      }
+
     })
   }
   changeState = (event, id) => {
